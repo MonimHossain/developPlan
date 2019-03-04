@@ -1,0 +1,51 @@
+@forelse($projectList as $pr)
+                                     <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td >{{$pr->id}}</td>
+                                        <td style="text-align: center">{{$pr->project_tiltle_bn}}<br/>({{$pr->date_of_commencement}} To {{$pr->date_of_completion}})</td>
+                                        <td>{{$pr->fe}} ? </td>
+                                        <td>{{$pr->total }} ?</td>
+                                        <td>{{$pr->pa}} ? </td>
+                                        <td>
+                                        @foreach($pr->approved_project_source as $source)
+                                        {{$commonclass->getValue($source->finanacing_source,'ProjectSource','source_name')}}<br/>
+                                        {{--{{$source->finanacing_source}}--}}
+                                        @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach($pr->approved_project_comments as $comment)
+                                                @if($comment->comment_level==12)
+                                                    {{$comment->comments}}<br/><br/>
+                                                @else
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach($pr->approved_project_comments as $comment)
+                                                @if($comment->comment_level==11)
+                                                    {{$comment->comments}}<br/><br/>
+                                                @else
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach($pr->approved_project_comments as $comment)
+                                                @if($comment->comment_level==9)
+                                                    {{$comment->comments}}<br/><br/>
+                                                @else
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach($pr->approved_project_comments as $comment)
+                                                @if($comment->comment_level==16)
+                                                    {{$comment->comments}}<br/><br/>
+                                                @else
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td><a class="btn btn-success" href="{{route('adp_allocation.edit',$pr->unapprove_project_id)}}">Allocate</a></td>
+                                     </tr>
+                                     @empty
+
+                                     @endforelse
