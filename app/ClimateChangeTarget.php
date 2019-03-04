@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+//designed by monim hossain
 class ClimateChangeTarget extends Model
 {
     use SoftDeletes;
